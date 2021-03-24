@@ -22,14 +22,14 @@ import time
 body = vtk.vtkSphereSource()
 body.SetCenter(0, 0, 0)
 body.SetRadius( 2.0 )
-body.SetThetaResolution(25)
-body.SetPhiResolution(25)
+body.SetThetaResolution(15)
+body.SetPhiResolution(15)
 
 head = vtk.vtkSphereSource()
-head.SetCenter(0, 3.2, 0)
+head.SetCenter(-4, 0, 0)
 head.SetRadius( 1.5 )
-head.SetThetaResolution(25)
-head.SetPhiResolution(25)
+head.SetThetaResolution(15)
+head.SetPhiResolution(15)
 
 
 #
@@ -75,13 +75,19 @@ ren1.SetBackground( 0.1, 0.2, 0.4 )
 #
 renWin = vtk.vtkRenderWindow()
 renWin.AddRenderer( ren1 )
-renWin.SetSize( 300, 300 )
+renWin.SetSize( 500, 500 )
+
+headActor.SetOrigin(0, 0, 0)
+for i in range (0, 90):
+    time.sleep(0.03)
+    renWin.Render()
+    headActor.RotateZ(-1)
 
 #
 # now we loop over 360 degreeees and render the cone each time
 #
-for i in range(0,360):
-    time.sleep(0.03)
+# for i in range(0,360):
+#     time.sleep(0.03)
 
-    renWin.Render()
-    ren1.GetActiveCamera().Azimuth( 1 )
+#     renWin.Render()
+#     ren1.GetActiveCamera().Azimuth( 1 )
