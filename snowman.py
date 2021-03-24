@@ -78,10 +78,38 @@ renWin.AddRenderer( ren1 )
 renWin.SetSize( 300, 300 )
 
 #
-# now we loop over 360 degreeees and render the cone each time
+# 0:16 - 0:22
 #
 for i in range(0,360):
+    time.sleep(0.01)
+
+    renWin.Render()
+    ren1.GetActiveCamera().Roll(1)
+
+#
+# 0:22 - 0:28
+#
+for i in range(0,360):
+    time.sleep(0.01)
+
+    renWin.Render()
+    ren1.GetActiveCamera().Azimuth(1)
+
+
+#
+# 0:28 - 0:31
+#
+for i in range(0,80):
     time.sleep(0.03)
 
     renWin.Render()
-    ren1.GetActiveCamera().Azimuth( 1 )
+    ren1.GetActiveCamera().Elevation(1)
+
+#
+# 0:31 - 0:34
+#
+for i in range(0,80):
+    time.sleep(0.03)
+
+    renWin.Render()
+    ren1.GetActiveCamera().Elevation(-1)
