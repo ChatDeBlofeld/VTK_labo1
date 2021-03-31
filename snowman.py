@@ -31,6 +31,13 @@ head.SetRadius( 1.5 )
 head.SetThetaResolution(15)
 head.SetPhiResolution(15)
 
+nose = vtk.vtkConeSource()
+nose.SetCenter(4, 0, 0)
+nose.SetDirection(0, -1, 0)
+nose.SetHeight( 0.5 )
+nose.SetRadius( 0.1 )
+nose.SetResolution(20)
+
 
 #
 # In this example we terminate the pipeline with a mapper process object.
@@ -45,6 +52,9 @@ headMapper.SetInputConnection( head.GetOutputPort() )
 bodyMapper = vtk.vtkPolyDataMapper()
 bodyMapper.SetInputConnection( body.GetOutputPort() )
 
+noseMapper = vtk.vtkPolyDataMapper()
+noseMapper.SetInputConnection( nose.GetOutputPort() )
+
 #
 # Create an actor to represent the cone. The actor orchestrates rendering of
 # the mapper's graphics primitives. An actor also refers to properties via a
@@ -57,6 +67,9 @@ headActor.SetMapper( headMapper )
 bodyActor = vtk.vtkActor()
 bodyActor.SetMapper( bodyMapper )
 
+noseActor = vtk.vtkActor()
+noseActor.SetMapper( noseMapper )
+
 #
 # Create the Renderer and assign actors to it. A renderer is like a
 # viewport. It is part or all of a window on the screen and it is
@@ -66,6 +79,7 @@ bodyActor.SetMapper( bodyMapper )
 ren1= vtk.vtkRenderer()
 ren1.AddActor( headActor )
 ren1.AddActor( bodyActor )
+ren1.AddActor(noseActor)
 ren1.SetBackground( 0.1, 0.2, 0.4 )
 ren1.ResetCamera(-4.5, 4.5, -4.5, 4.5, -4.5, 4.5)
 
@@ -78,17 +92,41 @@ renWin = vtk.vtkRenderWindow()
 renWin.AddRenderer( ren1 )
 renWin.SetSize( 500, 500 )
 
+
+
+# rotate the head
 for i in range (0, 90):
     time.sleep(0.03)
     renWin.Render()
     headActor.RotateZ(-1)
 
+# lower the head
 lower = vtk.vtkTransform()
 headActor.SetUserTransform(lower)
 for i in range (0, 8):
     time.sleep(0.03)
     lower.Translate(0, -0.1, 0)
     renWin.Render()
+
+# rotate the nose in front
+for i in range (0, 90):
+    time.sleep(0.03)
+    renWin.Render()
+    noseActor.RotateY(-1)
+
+# bring the nose closer to the body
+noseTranslate = vtk.vtkTransform()
+noseActor.SetUserTransform(noseTranslate)
+for i in range (0, 7):
+    time.sleep(0.03)
+    noseTranslate.Translate(0, 0, -0.1)
+    renWin.Render()
+
+# rotate the nose to the head
+for i in range (0, 90):
+    time.sleep(0.03)
+    renWin.Render()
+    noseActor.RotateZ(1)
 
 
 #
