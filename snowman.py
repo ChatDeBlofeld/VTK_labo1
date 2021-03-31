@@ -78,10 +78,6 @@ ren1.GetActiveCamera().SetPosition(0,0,22)
 renWin = vtk.vtkRenderWindow()
 renWin.AddRenderer( ren1 )
 renWin.SetSize( 500, 500 )
-renWin.Render()
-print(ren1.GetActiveCamera().GetFocalPoint())
-print(ren1.GetActiveCamera().GetPosition())
-
 
 headActor.SetOrigin(0, 0, 0)
 for i in range (0, 90):
