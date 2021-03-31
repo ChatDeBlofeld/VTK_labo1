@@ -67,7 +67,7 @@ ren1= vtk.vtkRenderer()
 ren1.AddActor( headActor )
 ren1.AddActor( bodyActor )
 ren1.SetBackground( 0.1, 0.2, 0.4 )
-ren1.GetActiveCamera().SetFocalPoint(0,0,0)
+# ren1.GetActiveCamera().SetFocalPoint(0,0,0)
 
 #
 # Finally we create the render window which will show up on the screen
@@ -78,11 +78,18 @@ renWin = vtk.vtkRenderWindow()
 renWin.AddRenderer( ren1 )
 renWin.SetSize( 500, 500 )
 
-headActor.SetOrigin(0, 0, 0)
 for i in range (0, 90):
     time.sleep(0.03)
     renWin.Render()
     headActor.RotateZ(-1)
+
+lower = vtk.vtkTransform()
+headActor.SetUserTransform(lower)
+for i in range (0, 8):
+    time.sleep(0.03)
+    lower.Translate(0, -0.1, 0)
+    renWin.Render()
+
 
 #
 # 0:16 - 0:22
