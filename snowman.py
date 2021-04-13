@@ -10,14 +10,14 @@ import time
 body = vtk.vtkSphereSource()
 body.SetCenter(0, 0, 0)
 body.SetRadius( 2.0 )
-body.SetThetaResolution(15)
-body.SetPhiResolution(15)
+body.SetThetaResolution(30)
+body.SetPhiResolution(30)
 
 head = vtk.vtkSphereSource()
 head.SetCenter(-4, 0, 0)
 head.SetRadius( 1.5 )
-head.SetThetaResolution(15)
-head.SetPhiResolution(15)
+head.SetThetaResolution(30)
+head.SetPhiResolution(30)
 
 leftEye = vtk.vtkSphereSource()
 leftEye.SetCenter(0.5, 3.5, 1.3)
