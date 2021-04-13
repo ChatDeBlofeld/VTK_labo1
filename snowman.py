@@ -126,8 +126,6 @@ for i in range (0, 90):
     renWin.Render()
 
 
-#headActor.SetVisibility(False)
-
 #
 # bring the nose closer to the body
 # 0:09 - 0:11
@@ -144,7 +142,7 @@ for i in range (0, 80):
 # rotate the nose into the head
 # 0:11 - 0:14
 #
-for i in range (0, 82):
+for i in range (0, 90):
     time.sleep(0.03)
     noseActor.AddPosition(0, -0.01, 0)
     noseActor.RotateZ(1)
@@ -155,11 +153,10 @@ for i in range (0, 82):
 # 0:14 - 0:16
 #
 noseActor.SetUserTransform(noseTranslate)
-for i in range (0, 195):
+for i in range (0, 25):
     time.sleep(0.01)
-    noseTranslate.Translate(0, 0, 0.01)
+    noseTranslate.Translate(0, 0, 0.1)
     renWin.Render()
-
 
 # 
 # Adding eyes - 0:16
@@ -184,7 +181,6 @@ for i in range(0,360):
 
     renWin.Render()
     ren1.GetActiveCamera().Azimuth(1)
-
 
 #
 # 0:28 - 0:31
