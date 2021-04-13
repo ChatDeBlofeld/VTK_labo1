@@ -87,7 +87,7 @@ bodyActor.SetMapper( bodyMapper )
 
 noseActor = vtk.vtkActor()
 noseActor.SetMapper( noseMapper )
-noseActor.GetProperty().SetColor(255, 165, 0)
+noseActor.GetProperty().SetColor(1, 0.5, 0)
 
 leftEyeActor = vtk.vtkActor()
 leftEyeActor.SetMapper( leftEyeMapper )
@@ -125,7 +125,7 @@ renWin.AddRenderer( ren1 )
 renWin.SetSize( 500, 500 )
 
 
-for i in range(0,90):
+for i in range(0,45):
     time.sleep(0.01)
     renWin.Render()
     ren1.GetActiveCamera().Azimuth(1)
@@ -161,7 +161,7 @@ for i in range (0, 90):
     renWin.Render()
 
 
-headActor.SetVisibility(False)
+#headActor.SetVisibility(False)
 
 #
 # bring the nose closer to the body
@@ -171,7 +171,10 @@ noseTranslate = vtk.vtkTransform()
 noseActor.SetUserTransform(noseTranslate)
 for i in range (0, 80):
     time.sleep(0.01)
+    #noseActor.AddPosition(0, 0, -0.01)
+    origin = noseActor.GetOrigin()
     noseTranslate.Translate(0, 0, -0.01)
+    #noseActor.SetOrigin(origin[0], origin[1], origin[2])
     renWin.Render()
 
 # neutral = vtk.vtkTransform()
@@ -181,11 +184,10 @@ for i in range (0, 80):
 # rotate the nose into the head
 # 0:11 - 0:14
 #
-noseActor.SetOrigin(0, 0, 0)
 
-for i in range (0, 90):
+for i in range (0, 82):
     time.sleep(0.03)
-    #noseActor.RotateWXYZ(1, 0, 0, 1)
+    noseActor.AddPosition(0, -0.01, 0)
     noseActor.RotateZ(1)
     renWin.Render()
 
@@ -194,7 +196,7 @@ for i in range (0, 90):
 # 0:14 - 0:16
 #
 noseActor.SetUserTransform(noseTranslate)
-for i in range (0, 175):
+for i in range (0, 190):
     time.sleep(0.01)
     noseTranslate.Translate(0, 0, 0.01)
     renWin.Render()
