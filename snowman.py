@@ -1,6 +1,11 @@
+# Labo 1 VTK
+# Thibaud Franchetti, Gildas Houlmann
+# 13.04.2021
 
 import vtk as vtk
 import time
+
+# Create the 3d objects
 
 body = vtk.vtkSphereSource()
 body.SetCenter(0, 0, 0)
@@ -33,6 +38,7 @@ nose.SetHeight( 0.5 )
 nose.SetRadius( 0.1 )
 nose.SetResolution(20)
 
+# Create mappers for the objects
 
 headMapper = vtk.vtkPolyDataMapper()
 headMapper.SetInputConnection( head.GetOutputPort() )
@@ -49,6 +55,7 @@ leftEyeMapper.SetInputConnection( leftEye.GetOutputPort() )
 rightEyeMapper = vtk.vtkPolyDataMapper()
 rightEyeMapper.SetInputConnection( rightEye.GetOutputPort() )
 
+# Create actors
 
 headActor = vtk.vtkActor()
 headActor.SetMapper( headMapper )
@@ -70,6 +77,7 @@ rightEyeActor.SetMapper( rightEyeMapper )
 rightEyeActor.GetProperty().SetColor(0, 0, 0)
 rightEyeActor.SetVisibility(False)
 
+# Create the renderer
 
 ren1= vtk.vtkRenderer()
 ren1.AddActor( headActor )
@@ -80,12 +88,11 @@ ren1.AddActor(rightEyeActor)
 ren1.SetBackground( 0.1, 0.2, 0.4 )
 ren1.GetActiveCamera().SetFocalPoint(0,0,0)
 ren1.GetActiveCamera().SetPosition(0,0,22)
-
+ren1.SetBackground(1, 0.89, 0.89)
 
 renWin = vtk.vtkRenderWindow()
 renWin.AddRenderer( ren1 )
 renWin.SetSize( 500, 500 )
-
 
 
 #
@@ -148,7 +155,7 @@ for i in range (0, 82):
 # 0:14 - 0:16
 #
 noseActor.SetUserTransform(noseTranslate)
-for i in range (0, 200):
+for i in range (0, 195):
     time.sleep(0.01)
     noseTranslate.Translate(0, 0, 0.01)
     renWin.Render()
