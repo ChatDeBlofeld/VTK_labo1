@@ -125,6 +125,11 @@ renWin.AddRenderer( ren1 )
 renWin.SetSize( 500, 500 )
 
 
+for i in range(0,90):
+    time.sleep(0.01)
+    renWin.Render()
+    ren1.GetActiveCamera().Azimuth(1)
+
 #
 # rotate head to over the body
 # 0:00 - 0:03
@@ -145,6 +150,7 @@ for i in range (0, 80):
     lower.Translate(0, -0.01, 0)
     renWin.Render()
 
+
 #
 # rotate the nose in front of the body
 # 0:06 - 0:09
@@ -153,6 +159,9 @@ for i in range (0, 90):
     time.sleep(0.03)
     noseActor.RotateY(-1)
     renWin.Render()
+
+
+headActor.SetVisibility(False)
 
 #
 # bring the nose closer to the body
@@ -165,12 +174,18 @@ for i in range (0, 80):
     noseTranslate.Translate(0, 0, -0.01)
     renWin.Render()
 
+# neutral = vtk.vtkTransform()
+# noseActor.SetUserTransform(neutral)
+
 #
 # rotate the nose into the head
 # 0:11 - 0:14
 #
+noseActor.SetOrigin(0, 0, 0)
+
 for i in range (0, 90):
     time.sleep(0.03)
+    #noseActor.RotateWXYZ(1, 0, 0, 1)
     noseActor.RotateZ(1)
     renWin.Render()
 
@@ -178,6 +193,7 @@ for i in range (0, 90):
 # bring the nose at the surface of the face
 # 0:14 - 0:16
 #
+noseActor.SetUserTransform(noseTranslate)
 for i in range (0, 175):
     time.sleep(0.01)
     noseTranslate.Translate(0, 0, 0.01)
