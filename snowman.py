@@ -95,27 +95,35 @@ renWin.SetSize( 500, 500 )
 
 
 
-# rotate the head
+# 
+# 0:00 - 0:03
+#
 for i in range (0, 90):
     time.sleep(0.03)
     renWin.Render()
     headActor.RotateZ(-1)
 
-# lower the head
+# 
+# 0:03 - 0:06
+#
 lower = vtk.vtkTransform()
 headActor.SetUserTransform(lower)
 for i in range (0, 8):
-    time.sleep(0.03)
+    time.sleep(0.06)
     lower.Translate(0, -0.1, 0)
     renWin.Render()
 
-# rotate the nose in front
+# 
+# 0:06 - 0:09
+#
 for i in range (0, 90):
     time.sleep(0.03)
     renWin.Render()
     noseActor.RotateY(-1)
 
-# bring the nose closer to the body
+# 
+# 0:09 - 0:11
+#
 noseTranslate = vtk.vtkTransform()
 noseActor.SetUserTransform(noseTranslate)
 for i in range (0, 7):
@@ -123,12 +131,21 @@ for i in range (0, 7):
     noseTranslate.Translate(0, 0, -0.1)
     renWin.Render()
 
-# rotate the nose to the head
+# 
+# 0:11 - 0:14
+#
 for i in range (0, 90):
     time.sleep(0.03)
     renWin.Render()
     noseActor.RotateZ(1)
 
+# 
+# 0:14 - 0:16
+#
+
+#
+# Adding eyes - 0:16
+#
 
 #
 # 0:16 - 0:22
